@@ -65,11 +65,11 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	if *pemPtr != "" {
+	if *pemPtr == "" {
 		uriSplit := strings.Split(*uriPtr, ":")
 		pemName = uriSplit[0] + "." + uriSplit[1] + ".pem"
 	} else {
-		pemName = "insecure.pem"
+		pemName = *pemPtr
 	}
 	if *updateFedoraPtr {
 		updateFedora(certs, pemName)
