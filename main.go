@@ -7,7 +7,9 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
+	"strings"
 )
 
 // https://stackoverflow.com/a/46735876
@@ -33,10 +35,12 @@ func getCertificatesPEM(address string) ([]byte, error) {
 	return certs, nil
 }
 
-func updateFedora(certs []byte) {
-	err := ioutil.WriteFile("/etc/pki/ca-trust/source/anchors/insecure.pem", certs, 0644)
+func updateFedora(certs []byte, pemName string) {
+	path := "/etc/pki/ca-trust/source/anchors/" + pemName
+	err := ioutil.WriteFile(path, certs, 0644)
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
 	}
 	cmd := exec.Command("update-ca-trust")
 
@@ -44,26 +48,36 @@ func updateFedora(certs []byte) {
 
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
 	}
 }
 
 func main() {
 	uriPtr := flag.String("uri", "jmainguy.com:443", "A hostname and port, jmainguy.com:443 for example")
-	pemPtr := flag.String("pem", "insecure.pem", "pem file to write to, insecure.pem by default")
+	pemPtr := flag.String("pem", "", "pem file to write to, insecure.pem by default")
 	updateFedoraPtr := flag.Bool("updateFedora", false, "write pem to /etc/pki/ca-trust/source/anchors and run update-ca-trust")
 
 	flag.Parse()
 
 	certs, err := getCertificatesPEM(*uriPtr)
+	var pemName string
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
+	}
+	if *pemPtr != "" {
+		uriSplit := strings.Split(*uriPtr, ":")
+		pemName = uriSplit[0] + "." + uriSplit[1] + ".pem"
+	} else {
+		pemName = "insecure.pem"
 	}
 	if *updateFedoraPtr {
-		updateFedora(certs)
+		updateFedora(certs, pemName)
 	} else {
-		err = ioutil.WriteFile(*pemPtr, certs, 0644)
+		err = ioutil.WriteFile(pemName, certs, 0644)
 		if err != nil {
 			fmt.Println(err)
+			os.Exit(1)
 		}
 	}
 }
