@@ -70,7 +70,7 @@ func updateFedora(certs []byte, pemName string) {
 
 func main() {
 	uriPtr := flag.String("uri", "", "A hostname and port, jmainguy.com:443 for example")
-	pemPtr := flag.String("pem", "", "pem file to write to, insecure.pem by default")
+	pemPtr := flag.String("pem", "", "pem file to write to, same name as host.port.pem by default, as interpretted from uri")
 	updateFedoraPtr := flag.Bool("updateFedora", false, "write pem to /etc/pki/ca-trust/source/anchors and run update-ca-trust")
 	timeoutPtr := flag.Int("timeout", 10, "Timeout in seconds")
 
