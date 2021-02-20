@@ -30,6 +30,12 @@ nfpms:
   maintainer: Jonathan Seth Mainguy <jon@soh.re>
   license: GPLv2
   vendor: Jmainguy
+  release: 1
+  replacements:
+    amd64: x86_64
+  overrides:
+      rpm:
+        file_name_template: "{{ .ProjectName }}-{{ .Version }}-{{.Release}}.{{ .Arch }}"
   formats:
   - deb
   - rpm
