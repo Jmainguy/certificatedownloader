@@ -23,8 +23,18 @@ Usage of certificateDownloader:
 
   To save jmainguy.com:443 cert, run certificateDownloader --uri jmainguy.com:443 for example
 ```
+
+## Examples
+
 ```/bin/bash
-./certificateDownloader -updateFedora
+# Download cert from jmainguy.com on port 443, and tell OS to trust it
+certificateDownloader --uri jmainguy.com:443 --updateFedora
+
+# Attempt to download cert from google.com on port 4444, but timeout after 5 seconds
+certificateDownloader --uri google.com:4444
+
+# Download certificate to /tmp/example.pem
+certificateDownloader --uri jmainguy.com:443 --pem /tmp/example.pem
 ```
 
 ## PreBuilt Binaries

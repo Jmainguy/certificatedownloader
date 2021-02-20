@@ -106,7 +106,9 @@ func main() {
 	} else {
 		pemName = *pemPtr
 	}
-	pemName = pemName + ".pem"
+	if !strings.HasSuffix(pemName, ".pem") {
+		pemName = pemName + ".pem"
+	}
 	if *updateFedoraPtr {
 		updateFedora(certs, pemName)
 	} else {
