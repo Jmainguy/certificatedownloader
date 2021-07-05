@@ -79,7 +79,7 @@ func main() {
 	if *uriPtr == "" {
 		flag.PrintDefaults()
 		fmt.Println("")
-		fmt.Println("  To save jmainguy.com:443 cert, run certificateDownloader --uri jmainguy.com:443 for example")
+		fmt.Println("  To save jmainguy.com:443 cert, run certificatedownloader --uri jmainguy.com:443 for example")
 		fmt.Println("")
 		os.Exit(1)
 	}

@@ -39,6 +39,8 @@ nfpms:
   overrides:
       rpm:
         file_name_template: "{{ .ProjectName }}-{{ .Version }}-{{.Release}}.{{ .Arch }}"
+      deb:
+        file_name_template: "{{ .ProjectName }}_{{ .Version }}-{{.Release}}_{{ .Arch }}"
   formats:
   - deb
   - rpm
@@ -48,16 +50,16 @@ brews:
       owner: jmainguy
       name: homebrew-tap
     folder: Formula
-    homepage: https://github.com/Jmainguy/certificateDownloader
+    homepage: https://github.com/Jmainguy/certificatedownloader
     description: "Download and trust certs"
     license: "GPL-2.0"
     commit_author:
       name: Jonathan Mainguy
       email: jon@soh.re
     test: |
-      system "#{bin}/certificateDownloader"
+      system "#{bin}/certificatedownloader"
     install: |
-      bin.install "certificateDownloader"
+      bin.install "certificatedownloader"
 
 checksum:
   name_template: 'checksums.txt'

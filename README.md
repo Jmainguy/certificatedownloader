@@ -1,7 +1,7 @@
-# certificateDownloader
-[![Go Report Card](https://goreportcard.com/badge/github.com/Jmainguy/certificateDownloader)](https://goreportcard.com/badge/github.com/Jmainguy/certificateDownloader)
-[![Release](https://img.shields.io/github/release/Jmainguy/certificateDownloader.svg?style=flat-square)](https://github.com/Jmainguy/certificateDownloader/releases/latest)
-[![Coverage Status](https://coveralls.io/repos/github/Jmainguy/certificateDownloader/badge.svg?branch=main)](https://coveralls.io/github/Jmainguy/certificateDownloader?branch=main)
+# certificatedownloader
+[![Go Report Card](https://goreportcard.com/badge/github.com/Jmainguy/certificatedownloader)](https://goreportcard.com/badge/github.com/Jmainguy/certificatedownloader)
+[![Release](https://img.shields.io/github/release/Jmainguy/certificatedownloader.svg?style=flat-square)](https://github.com/Jmainguy/certificatedownloader/releases/latest)
+[![Coverage Status](https://coveralls.io/repos/github/Jmainguy/certificatedownloader/badge.svg?branch=main)](https://coveralls.io/github/Jmainguy/certificatedownloader?branch=main)
 
 This tool is designed to download a certificate from a remote source.
 
@@ -11,7 +11,7 @@ I use this tool to trust domains ending .local and other untrusted certificates.
 
 ## Usage
 ```/bin/bash
-Usage of certificateDownloader:
+Usage of certificatedownloader:
   -pem string
     	pem file to write to, same name as host.port.pem by default, as interpretted from uri
   -timeout int
@@ -21,24 +21,24 @@ Usage of certificateDownloader:
   -uri string
     	A hostname and port, jmainguy.com:443 for example
 
-  To save jmainguy.com:443 cert, run certificateDownloader --uri jmainguy.com:443 for example
+  To save jmainguy.com:443 cert, run certificatedownloader --uri jmainguy.com:443 for example
 ```
 
 ## Examples
 
 ```/bin/bash
 # Download cert from jmainguy.com on port 443, and tell OS to trust it
-certificateDownloader --uri jmainguy.com:443 --updateFedora
+certificatedownloader --uri jmainguy.com:443 --updateFedora
 
 # Attempt to download cert from google.com on port 4444, but timeout after 5 seconds
-certificateDownloader --uri google.com:4444
+certificatedownloader --uri google.com:4444
 
 # Download certificate to /tmp/example.pem
-certificateDownloader --uri jmainguy.com:443 --pem /tmp/example.pem
+certificatedownloader --uri jmainguy.com:443 --pem /tmp/example.pem
 ```
 
 ## PreBuilt Binaries
-Grab Binaries from [The Releases Page](https://github.com/Jmainguy/certificateDownloader/releases)
+Grab Binaries from [The Releases Page](https://github.com/Jmainguy/certificatedownloader/releases)
 
 ## Build
 ```/bin/bash
