@@ -4,6 +4,7 @@ before:
   hooks:
     # you may remove this if you don't use vgo
     - go mod tidy
+
 builds:
 - env:
   - CGO_ENABLED=0
@@ -13,6 +14,7 @@ builds:
     - windows
   goarch:
     - amd64
+
 archives:
 - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
   replacements:
@@ -23,6 +25,7 @@ archives:
   format_overrides:
   - goos: windows
     format: zip
+
 nfpms:
 - file_name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
   homepage:  https://soh.re
@@ -39,8 +42,26 @@ nfpms:
   formats:
   - deb
   - rpm
+
+brews:
+  - tap:
+      owner: jmainguy
+      name: homebrew-tap
+    folder: Formula
+    homepage: https://github.com/Jmainguy/certificateDownloader
+    description: "Download and trust certs"
+    license: "GPL-2.0"
+    commit_author:
+      name: Jonathan Mainguy
+      email: jon@soh.re
+    test: |
+      system "#{bin}/certificateDownloader"
+    install: |
+      bin.install "certificateDownloader"
+
 checksum:
   name_template: 'checksums.txt'
+
 changelog:
   sort: asc
   filters:
