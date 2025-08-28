@@ -30,7 +30,11 @@ func getCertificatesPEM(dialTimeout int, address string) ([]byte, error) {
 		}
 		return []byte(""), err
 	}
-	defer conn.Close()
+	defer func() {
+		if cerr := conn.Close(); cerr != nil {
+			fmt.Fprintf(os.Stderr, "error closing connection: %v\n", cerr)
+		}
+	}()
 	var b bytes.Buffer
 	for _, cert := range conn.ConnectionState().PeerCertificates {
 		err := pem.Encode(&b, &pem.Block{
