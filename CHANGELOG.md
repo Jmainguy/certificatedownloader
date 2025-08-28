@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/Jmainguy/certificatedownloader/compare/v1.0.0...v1.0.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* check errors ([ef1285b](https://github.com/Jmainguy/certificatedownloader/commit/ef1285bad3295f024c57ab2a0fda44776b277171))
+* update goreleaser ([e9b125b](https://github.com/Jmainguy/certificatedownloader/commit/e9b125b062f4e7be26c9941b01c8a67e933763d6))
+
 ## [1.0.0](https://github.com/Jmainguy/certificatedownloader/compare/v0.2.0...v1.0.0) (2025-08-28)
 
 
