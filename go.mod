@@ -1,3 +1,3 @@
 module github.com/jmainguy/certificatedownloader
 
-go 1.15
+go 1.25

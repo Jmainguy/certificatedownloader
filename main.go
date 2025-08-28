@@ -6,7 +6,6 @@ import (
 	"encoding/pem"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"net"
 	"os"
 	"os/exec"
@@ -48,7 +47,7 @@ func getCertificatesPEM(dialTimeout int, address string) ([]byte, error) {
 
 func updateFedora(certs []byte, pemName string) {
 	path := "/etc/pki/ca-trust/source/anchors/" + pemName
-	err := ioutil.WriteFile(path, certs, 0644)
+	err := os.WriteFile(path, certs, 0644)
 	if err != nil {
 		if strings.Contains(err.Error(), "permission denied") {
 			fmt.Println(err)
@@ -112,7 +111,7 @@ func main() {
 	if *updateFedoraPtr {
 		updateFedora(certs, pemName)
 	} else {
-		err = ioutil.WriteFile(pemName, certs, 0644)
+		err = os.WriteFile(pemName, certs, 0644)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
