@@ -10,4 +10,4 @@ permissions:
 
 jobs:
   golang-ci:
-    uses: Jmainguy/golang-workflows/.github/workflows/golang-ci.yml@v2
+    uses: Jmainguy/golang-workflows/.github/workflows/golang-ci.yml@v2.1.1
